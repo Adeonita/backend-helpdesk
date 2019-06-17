@@ -1,26 +1,29 @@
 <?php
 
-  class User {
+  abstract class User {
 
     private $id;
-    private $name = $_POST['name'];
-    private $email = $_POST['email'];
-    private $cpf = $_POST['cpf'];
-    private $phone = $_POST['phone'];
-    private $menssage = $_POST['menssage'];
+    private $name;
+    private $email;
+    private $cpf;
+    private $phone;
+    private $menssage;
+
+    public function getId(){
+      return $this->name;
+    }
 
     public function getName(){
       return $this->name;
     }
 
     public function getEmail(){
-      return $this->email
+      return $this->email;
     }
 
     public function getCpf(){
-      return $this->Cpf;
+      return $this->cpf;
     }
-
     public function getPhone(){
       return $this->phone;
     }
@@ -30,6 +33,9 @@
     }
 
     /**Sets*/
+    public function setId($id){
+      $this->name = $id;
+    }
     public function setName($name){
       $this->name = $name;
     }
@@ -49,6 +55,6 @@
     public function setMessage($message){
       $this->message =  $message;
     }
-    
+
   }
 ?>

@@ -2,13 +2,31 @@
 
   class Technician extends User{
 
-    private $cargo = $_POST['cargo'];
-    private $matricula = $_POST['matricula'];
-    private $setor = $_POST['setor'];
-    private $login = $_POST['login'];
-    private $senha = $_POST['senha'];
-    private $area = $_POST['area'];
-    private $tipo = $_POST['tipo'];
+    private $role;  //Cargo
+    private $registration; //Matricula
+    private $setor;
+    private $login;
+    private $password;
+    private $area;
+    private $type;  //Terceirizado ou efetivo
+
+    public function __construct($atributes){
+      if(isset($atributes['id'])){
+        $this->setId($atributes['id']);
+      }
+      $this->setName($atributes['name']);
+      $this->setEmail($atributes['email']);
+      $this->setCpf($atributes['cpf']);
+      $this->setPhone($atributes['phohe']);
+      $this->setMessage($atributes['message']);
+      $this->role = $atributes['role'];
+      $this->registration = $atributes['registration'];
+      $this->sector = $atributes['sector'];
+      $this->login = $atributes['login'];
+      $this->password = $atributes['password'];
+      $this->area = $atributes['area'];
+      $this->type = $atributes['type'];
+    }
 
     public function getCargo(){
       return $this->cargo;
