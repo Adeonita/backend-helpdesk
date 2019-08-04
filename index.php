@@ -2,7 +2,7 @@
   require_once 'includes.php';
 
   $called = new Called([
-    'id' => '1',
+    'id' => '',
     'userId' => '1',
     'area' => 'ti',
     'description' => 'Chamado teste',
@@ -13,6 +13,16 @@
     'note' => 'Observacao teste'
   ]);
 
+  $user = new Requester([
+    'id' => '',
+    'name' => 'Teste',
+    'email' => 'teste@teste.com',
+    'cpf' => '00000000000',
+    'phone' => '000000000000'
+  ]);
+
   $connection = new Database();
-  $testConnection = $connection->insert($called);
+  $chamado = $connection->insert($called);
+  $usuario = $connection->insert($user);
+
 ?>

@@ -1,5 +1,7 @@
 <?php
 
+  require_once 'includes.php';
+
   class Called{
 
     private $id;

@@ -23,8 +23,9 @@
       $connection = $this->getConnection(); // Cria a conexão com o banco
       $builder = new QueryBuilder();
       $query = $builder->queryInsert($name_entity, $attributes);
+      var_dump($attributes);
       if($connection->query($query)){
-        echo "inserido com sucesso";
+        echo "inserido com sucesso<br>";
       }else{
         echo $connection->error;
       }
@@ -48,6 +49,20 @@
     */
     private function getAttributes($entity){
       $reflection = new ReflectionClass($entity); //Instancia a classe que faz o reconhecimento da estrutura do objeto
+      $result = [];
+      if($reflection->getParentClass()){
+        $parent = false;
+        do {
+          if( $parent  )
+            $result = array_merge($result, $this->getAttributesClass($parent, $entity));
+        }while($parent = $reflection->getParentClass());
+      }else{
+        $result = $this->getAttributesClass($reflection, $entity);
+      }
+      return $result;
+    }
+
+    public function getAttributesClass(ReflectionClass $reflection, $entity) {
       $data = $reflection->getProperties(ReflectionProperty::IS_PRIVATE); //Pega todos os nomes dos atributos privados da classe em questão
       $result = []; //Crio um array pra guardar os nomes e valores dos atributos
       foreach ($data as $attribute) { //Percorro os nomes dos atributos do objeto passado 'entity'

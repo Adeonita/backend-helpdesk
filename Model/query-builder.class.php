@@ -18,8 +18,10 @@
       $values = "";
 
       foreach($attributes as $column => $value){
-        $columns =  $columns.$column.',';   //Separo todas as palavras por virgula
-        $values = $values.'"'.$value.'",';  //Separo todas por vírgula e insiro aspas
+        if(!empty($value)){
+          $columns =  $columns.$column.',';   //Separo todas as palavras por virgula
+          $values = $values.'"'.$value.'",';  //Separo todas por vírgula e insiro aspas
+        }
       }
 
       $columns = substr_replace($columns, '', -1); //Removo a última virgula
